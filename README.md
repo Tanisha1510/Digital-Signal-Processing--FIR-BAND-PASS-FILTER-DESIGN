@@ -19,7 +19,30 @@ Step 5: Plot the magnitude spectrum with x-label and y-label with suitable title
 Step 6: Terminate the program.
 
 ## PROGRAM: 
-
+```
+clc; % clear screen
+clear all; % clear screen
+close all; % close all figure windows
+Wc1=input('enter the value of Wc1=');
+Wc2=input('enter the value of Wc2=');
+N=input('enter the value of N=');
+alpha=(N-1)/2;
+eps=0.001;
+%Band Pass Filter Coefficient
+n=0:1:N-1;
+hd=(sin(Wc1*(n-alpha+eps))-sin(Wc2*(n-alpha+eps)*pi))./((n-alpha+eps)*pi);
+%Hanning Window Sequence
+n=0:1:N-1;
+wh=0.5-0.5*cos((2*pi*n)/(N-1));
+hn=hd.*wh;
+% Plot the Band Pass Filter with Hanning Window Technique
+w=0:0.01:pi;
+h=freqz(hn,1,w);
+plot(w/pi,abs(h),'ms'); 
+title('Band pass Filter using Hanning Window');
+```
 ## OUTPUT:
+<img width="799" height="716" alt="image" src="https://github.com/user-attachments/assets/a3e23b7f-357b-4d1c-9da2-db87ef48a30a" />
 
 ## RESULT:
+<img width="955" height="308" alt="image" src="https://github.com/user-attachments/assets/f5dee70f-6ec3-45a9-a87f-4e47f2cb9b62" />
